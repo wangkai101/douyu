@@ -36,8 +36,8 @@ class CollectionNormalCell: UICollectionViewCell {
             
             
             //设置封面图片
-//            guard let iconURL = NSURL(string: anchor.vertical_src) else { return }
-//            iconImageView.kf.setImage(with: iconURL as! Resource)
+            guard let iconURL = URL(string: anchor.vertical_src) else { return }
+            iconImageView.kf.setImage(with: iconURL)
             
             //房间名称
             roomNameLabel.text = anchor.room_name

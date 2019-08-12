@@ -9,13 +9,31 @@
 
 import UIKit
 
+var contentView : UIView?
+
 private let kPrettyCellID = "kPrettyCellID"
 private let kNormalCellID = "kNormalCellID"
 private let kHeaderViewID = "kHeaderViewID"
 
+private let kItemMargin : CGFloat = 10
+private let kItemW = (kScreenW - 3 * kItemMargin) / 2
+private let kNormalItemH = kItemW * 3 / 4
+private let kPrettyItemH = kItemW * 4 / 3
+private let kHeaderViewH : CGFloat = 50
+
 class RecommendViewController: UIViewController {
 
     //MARK:- 懒加载属性
+    private lazy var animImageView : UIImageView = { [unowned self] in
+        let imageView = UIImageView(image: UIImage(named: "img_loading_1"))
+        imageView.center = self.view.center
+        imageView.animationImages = [UIImage(named: "img_loading_1")!, UIImage(named: "img_loading_2")!]
+        imageView.animationDuration = 0.5
+        imageView.animationRepeatCount = LONG_MAX
+        imageView.autoresizingMask = [.flexibleTopMargin, .flexibleBottomMargin]
+        return imageView
+        
+        }()
     private lazy var recommendVM : RecommendViewModel = RecommendViewModel()
     private lazy var collectionView : UICollectionView = {[unowned self] in
         //先创建布局
@@ -65,6 +83,14 @@ class RecommendViewController: UIViewController {
 //MARK:- 设置UI界面
 extension RecommendViewController {
     private func setupUI() {
+        
+        contentView = collectionView
+        contentView?.isHidden = true
+        view.addSubview(animImageView)
+        animImageView.startAnimating()
+        view.backgroundColor = UIColor(r: 250, g: 250, b: 250)
+        timer()        
+        
         //将UICollectionView添加到控制器的View中
         view.addSubview(collectionView)
         
@@ -78,6 +104,21 @@ extension RecommendViewController {
         collectionView.contentInset = UIEdgeInsets(top: kCycleViewH + kGameViewH, left: 0, bottom: 0, right: 0)
     }
     
+    func stopAnimating() {
+        animImageView.startAnimating()
+        animImageView.isHidden = true
+        contentView?.isHidden = false
+    }
+    
+}
+
+//MARK:- 设置定时器
+extension RecommendViewController {
+    private func timer() {
+        Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { (timer) in
+            self.stopAnimating()
+        }
+    }
 }
 
 //MARK:- 请求数据
@@ -89,13 +130,23 @@ extension RecommendViewController {
             self.collectionView.reloadData()
             
             //将数据传给GameView
-            self.gameView.groups = self.recommendVM.anchorGroups
+            var groups = self.recommendVM.anchorGroups
+            //移除前两组数据
+            groups.removeFirst()
+            groups.removeFirst()
+            //添加更多组
+            let moreGroup = AnchorGroup()
+            moreGroup.tag_name = "更多"
+            groups.append(moreGroup)
+            
+            self.gameView.groups = groups
         }
         
         //请求轮播数据
         recommendVM.requestCycleData {
            self.cycleView.cycleModels = self.recommendVM.cycleModels
         }
+        
     }
 }
 
@@ -107,7 +158,7 @@ extension RecommendViewController : UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let group = recommendVM.anchorGroups[section]
-        
+       
         return group.anchors.count
         
     }
@@ -128,7 +179,7 @@ extension RecommendViewController : UICollectionViewDataSource, UICollectionView
            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kNormalCellID, for: indexPath) as! CollectionNormalCell
             
             cell.anchor = anchor
-            
+           
             return cell
         }
         
@@ -156,5 +207,18 @@ extension RecommendViewController : UICollectionViewDataSource, UICollectionView
         }
         
         return CGSize(width: kItemW, height: kNormalItemH)
+    }
+}
+
+
+extension RecommendViewController : UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("点击了:\(indexPath)")
+        let showRoomVc = popViewController()
+        
+        //2种弹出方式
+//        present(showRoomVc, animated: true, completion: nil)
+        navigationController?.pushViewController(showRoomVc, animated: true)
+        
     }
 }

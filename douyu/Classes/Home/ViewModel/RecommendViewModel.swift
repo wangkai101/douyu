@@ -23,7 +23,7 @@ class RecommendViewModel {
 extension RecommendViewModel {
     func requestData(finishCallback : @escaping () -> ()) {
         //定义参数
-        let paramters = ["limit" : "4", "offset" : "0", "time" : NSDate.getCurrentTime() as NSString]
+        let paramters = ["limit" : "4", "offset" : "0", "time" : Date.getCurrentTime() as NSString]
         
         //创建Group
         let dGroup = DispatchGroup()
@@ -31,7 +31,7 @@ extension RecommendViewModel {
         
         //请求第一部分推荐数据
         dGroup.enter()
-        NetworkTools.requestData(URL: "http://capi.douyucdn.cn/api/v1/getbigDataRoom", type: .GET, paramters: ["time" : NSDate.getCurrentTime() as NSString]) { (result) in
+        NetworkTools.requestData(URL: "http://capi.douyucdn.cn/api/v1/getbigDataRoom", type: .GET, paramters: ["time" : Date.getCurrentTime()]) { (result) in
             //将result转成字典类型
             guard let resultDict = result as? [String : NSObject] else { return }
             
@@ -39,8 +39,6 @@ extension RecommendViewModel {
             guard let dataArray = resultDict["data"] as? [[String : NSObject]] else { return }
             
             //遍历数组，获取字典，并且把字典转成模型对象
-            
-            
             //设置组的属性
             self.bigDataGroup.tag_name = "热门"
             self.bigDataGroup.icon_name = "home_header_hot"
@@ -66,8 +64,7 @@ extension RecommendViewModel {
             guard let dataArray = resultDict["data"] as? [[String : NSObject]] else { return }
             
             //遍历数组，获取字典，并且把字典转成模型对象
-            
-                //设置组的属性
+              //设置组的属性
             self.PrettyGroup.tag_name = "颜值"
             self.PrettyGroup.icon_name = "home_header_phone"
             
@@ -99,6 +96,7 @@ extension RecommendViewModel {
                 self.anchorGroups.append(group)
             }
 
+            
             //离开组
             dGroup.leave()
             

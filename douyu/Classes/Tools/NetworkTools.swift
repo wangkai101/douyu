@@ -23,7 +23,7 @@ class NetworkTools {
         let method = type == .GET ? HTTPMethod.get : HTTPMethod.post
         
         //发送网络请求
-        Alamofire.request(URL, method : method, parameters: paramters, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
+        Alamofire.request(URL, method : method, parameters: paramters).responseJSON { (response) in
             //获取结果
             guard let result = response.result.value else {
                 print(response.result.error)

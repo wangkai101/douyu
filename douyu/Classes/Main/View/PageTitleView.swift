@@ -136,6 +136,7 @@ extension PageTitleView {
             self.scrollLine.frame.origin.x = scrollLineX
         }
         
+        
         //通知代理
         delegate?.pageTitleView(titleView: self, selectedIndex: currentIndex)
     }
@@ -153,6 +154,7 @@ extension PageTitleView {
         let moveTotalX = targetLabel.frame.origin.x - sourceLabel.frame.origin.x
         let moveX = moveTotalX * progress
         scrollLine.frame.origin.x = sourceLabel.frame.origin.x + moveX
+        
         
         //颜色的渐变
            //取出变化的范围

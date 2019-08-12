@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CycleModel: NSObject {
+@objcMembers class CycleModel: NSObject {
     //标题
     var title : String = ""
     //展示的图片信息

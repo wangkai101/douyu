@@ -15,11 +15,16 @@ class CollecttionGameCell: UICollectionViewCell {
     @IBOutlet weak var iconImageView: UIImageView!
     
     //MARK:- 定义模型属性
-    var group : AnchorGroup? {
+    var baseGame : BaseGameModel? {
         didSet {
-            titleLabel.text = group?.tag_name
-//            let iconURL = NSURL(string: group?.icon_url ?? "")!
-//            iconImageView.kf.setImage(with: iconURL as! Resource, placeholder: UIImage(named: "home_more_btn"))
+            titleLabel.text = baseGame?.tag_name
+            
+            if let iconURL = URL(string: baseGame?.icon_url ?? "") {
+                iconImageView.kf.setImage(with: iconURL)
+            } else {
+                iconImageView.image = UIImage(named: "home_more_btn")
+            }
+            
             
         }
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AnchorModel: NSObject {
+@objcMembers class AnchorModel: NSObject {
     ///房间号
     var room_id : Int = 0
     

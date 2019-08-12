@@ -23,11 +23,7 @@ let kScreenH = UIScreen.main.bounds.height
 let kNormalColor : (CGFloat, CGFloat, CGFloat) = (85, 85, 85)
 let kSelectColor : (CGFloat, CGFloat, CGFloat) = (255, 128, 0)
 
-let kItemMargin : CGFloat = 10
-let kItemW = (kScreenW - 3 * kItemMargin) / 2
-let kNormalItemH = kItemW * 3 / 4
-let kPrettyItemH = kItemW * 4 / 3
-let kHeaderViewH : CGFloat = 50
+
 
 let kCycleViewH = kScreenW * 3 / 8
 

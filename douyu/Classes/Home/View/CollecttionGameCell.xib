@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CollecttionGameCell" customModule="douyu" customModuleProvider="target">
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CollecttionGameCell" customModule="douyu" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="80" height="90"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -20,18 +20,16 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="英雄联盟" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h31-3b-Hfy">
-                        <rect key="frame" x="17.5" y="65" width="45" height="15"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="15" id="4xz-0O-OH0"/>
-                        </constraints>
+                        <rect key="frame" x="17.5" y="64.5" width="45" height="13.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_loading_2" translatesAutoresizingMaskIntoConstraints="NO" id="kGJ-9C-riY">
-                        <rect key="frame" x="17.5" y="15" width="45" height="45"/>
+                        <rect key="frame" x="17.5" y="14.5" width="45" height="45"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="kGJ-9C-riY" secondAttribute="height" multiplier="1:1" id="SzN-mu-3q8"/>
+                            <constraint firstAttribute="width" constant="45" id="6mT-jx-fBQ"/>
+                            <constraint firstAttribute="height" constant="45" id="R9Y-IJ-fZ6"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -40,14 +38,23 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </imageView>
+                    <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdV-bs-r1E">
+                        <rect key="frame" x="0.0" y="90" width="80" height="1"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="5Y8-cm-8Ny"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="h31-3b-Hfy" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="34z-CE-85E"/>
-                <constraint firstItem="kGJ-9C-riY" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="HmW-eh-IBO"/>
-                <constraint firstItem="kGJ-9C-riY" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="MB5-dI-v9U"/>
-                <constraint firstItem="h31-3b-Hfy" firstAttribute="top" secondItem="kGJ-9C-riY" secondAttribute="bottom" constant="5" id="evf-RG-lkg"/>
-                <constraint firstAttribute="bottom" secondItem="h31-3b-Hfy" secondAttribute="bottom" constant="10" id="xfV-it-k3K"/>
+                <constraint firstItem="h31-3b-Hfy" firstAttribute="centerX" secondItem="kGJ-9C-riY" secondAttribute="centerX" id="3MC-Gf-GsZ"/>
+                <constraint firstAttribute="bottom" secondItem="cdV-bs-r1E" secondAttribute="bottom" constant="-1" id="57k-tE-gen"/>
+                <constraint firstItem="cdV-bs-r1E" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="6gu-wB-h77"/>
+                <constraint firstAttribute="trailing" secondItem="cdV-bs-r1E" secondAttribute="trailing" id="DFS-As-sSf"/>
+                <constraint firstItem="kGJ-9C-riY" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="PTs-Ax-OOd"/>
+                <constraint firstItem="h31-3b-Hfy" firstAttribute="top" secondItem="kGJ-9C-riY" secondAttribute="bottom" constant="5" id="YgG-az-W0G"/>
+                <constraint firstItem="kGJ-9C-riY" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="-8" id="ffF-vM-siM"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="220" height="278"/>

@@ -60,7 +60,7 @@
                                 </button>
                             </barButtonItem>
                             <barButtonItem title="Item" style="plain" id="hPI-D9-IWd">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xhq-2G-FP2">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xhq-2G-FP2">
                                     <rect key="frame" x="229" y="11" width="22" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" image="Image_my_history_click"/>
@@ -96,7 +96,7 @@
         <!--首页-->
         <scene sceneID="y88-pm-nG1">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5DZ-z0-AWg" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5DZ-z0-AWg" customClass="CustomNavigationController" customModule="douyu" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="首页" image="btn_home_normal" selectedImage="btn_home_selected" id="2fG-rO-BSG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IJ9-vh-gJz">
